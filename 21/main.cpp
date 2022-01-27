@@ -61,9 +61,15 @@ int main() {
 
     input.close();
 
-    sort(rects, rects+N, [](Rect a, Rect b) {
-        return a.area() > b.area();
-    });
+    for(int i = 0; i < N; i++) {
+        for(int j = N-1; j > i; j--) {
+            if(rects[i].area() < rects[j].area()) {
+                Rect tmp = rects[j];
+                rects[j] = rects[i];
+                rects[i] = tmp;
+            }
+        }
+    }
 
     ofstream output("output.txt");
 
